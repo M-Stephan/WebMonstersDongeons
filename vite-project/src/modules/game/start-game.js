@@ -40,7 +40,7 @@ export function StartGame(playerData) {
             Dix années de solitude, de survie, de silence.<br>
             Mais tu as décidé il y a peu de quitter ton refuge dans l'espoir de découvrir si d'autres ${race} sont encore en vie..<br><br>
 
-            À l'instant, en cette fin d'après midi calme et ensoleillée, traversant une énorme forêt tu vois à moins de 2 kilomètres un énorme et magnifique royaume!<br>
+            À l'instant, en cette fin d'après midi calme et ensoleillée, traversant une énorme forêt tu vois à moins de 2 kilomètres un grand et magnifique royaume!<br>
             Quand soudain il y a du bruit dans les buissons...
         </p>
 
@@ -54,12 +54,14 @@ export function StartGame(playerData) {
     buisBtn.addEventListener("click", function() {
         Notify("info", `Action`, "Tu regardes dans le buisson..", 3);
         playerData["metadata"]["stamina"] = playerData["metadata"]["stamina"] - 5;
+        playerData["avancement"] = 1.1;
         UpdatePlayer(playerData);
     })
 
     castleBtn.addEventListener("click", function() {
         Notify("info", `Action`, "Tu continue ton chemin..", 3);
         playerData["metadata"]["stamina"] = playerData["metadata"]["stamina"] - 10;
+        playerData["avancement"] = 1.2;
         UpdatePlayer(playerData);
     })
 }

@@ -1,4 +1,5 @@
 import { Debug } from "../utils/debug.js";
+import { Notify } from "../utils/notify.js";
 
 export function CreatePlayer(data) {
     Debug("info", "function CreatePlayer has been called", true);
@@ -10,7 +11,7 @@ export function CreatePlayer(data) {
         stats = data.stats
     } else {
         // stats = GetStats(data.race)
-    }
+    };
 
     const newPlayer = {
         "username":  data.userName,
@@ -19,6 +20,7 @@ export function CreatePlayer(data) {
         "race": data.race,
         "type": data.type,
         "level": 1,
+        "avancement": 1,
         "metadata": {
             "stamina" : stats.stamina,
             "rp": 0,
@@ -26,7 +28,8 @@ export function CreatePlayer(data) {
             "mana": stats.mana,
             "hunger": stats.hunger,
             "thirst": stats.thirst
-        }
+        },
+        "inventory": []
     }
     localStorage.setItem("player", JSON.stringify(newPlayer));
 };
@@ -46,6 +49,7 @@ export function UpdatePlayer(playerData) {
         "race": playerData.race,
         "type": playerData.type,
         "level": playerData.level,
+        "avancement": playerData.avancement,
         "metadata": {
             "stamina" : playerData.metadata.stamina,
             "rp": playerData.metadata.rp,
@@ -53,15 +57,18 @@ export function UpdatePlayer(playerData) {
             "mana": playerData.metadata.mana,
             "hunger": playerData.metadata.hunger,
             "thirst": playerData.metadata.thirst
-        }
+        },
+        "inventory": playerData.metadata.inventory
     };
 
     localStorage.setItem("player", {table});
 
-    Debug("sucess", `UpdatePlayer() has sucessfully saved player:${JSON.stringify(table)}`, false)
+    Debug("success", `UpdatePlayer() has sucessfully saved player:${JSON.stringify(table)}`, false)
 };
 
 export function DeletePlayer() {
-    alert("Êtes-vous sûr de vouloir supprimer la partie ?");
+    let response = confirm("Êtes-vous sûr de vouloir supprimer la partie ?");
+    if (!response) return;
     localStorage.removeItem("player");
+    Notify("info", "Suppression", "La partie a été correctement supprimée", 5);
 };

@@ -28,7 +28,7 @@ function ShowNotify(type, title, description) {
             color = "orange";
             break;
         case "success":
-            color = "#2c5529";
+            color = "#82c57e";
             break;
         case "error":
             color = "#913232";

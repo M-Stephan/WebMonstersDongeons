@@ -26,6 +26,9 @@ export function MainMenu() {
     const parametersBtn = document.getElementById("parameters");
 
     createBtn.addEventListener("click", function() {
+        
+        let response = confirm("Ceci ecrasera la partie existante, continuer?");
+        if (!response) return;
         CreatePlayerForm();
     });
 

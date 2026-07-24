@@ -28,6 +28,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  font-size: 40px;
+  font-family: var(--font-family);
+  font-weight: var(--font-weight);
+  font-style: var(--font-style);
+  text-align: center;
+}
 .show-notify {
   display: grid;
   gap: 25px;
@@ -35,7 +42,6 @@
   place-items: center;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
-  text-align: center;
 }
 
 .hide-notify {
@@ -43,10 +49,6 @@
 }
 
 .notify {
-  font-size: 40px;
-  font-family: var(--font-family);
-  font-weight: var(--font-weight);
-  font-style: var(--font-style);
   position: relative;
   display: block;
   padding: 20px;
@@ -59,5 +61,19 @@
   box-shadow: 0px 0px 35px 8px rgba(44, 44, 44, 0.596);
   border-radius: 15px;
   background-color: rgba(66, 46, 29, 0.63);
-  color:#20160d;
+  color:#0f200d;
+}
+
+#main-menu {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  place-items: center;
+}
+
+.main-menu-btn {
+  width: 200px;
+  height: 80px;
+  border-radius: 15px;
 }

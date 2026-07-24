@@ -17,6 +17,6 @@ export function getInventoryTest() {
     }, 27000);
     
     setTimeout(() => {
-        UseConsummable("water")
+        UseConsummable("water");
     }, 36000);
 };

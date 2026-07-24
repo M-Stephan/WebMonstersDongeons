@@ -29,7 +29,10 @@ export function CreatePlayer(data) {
             "hunger": stats.hunger,
             "thirst": stats.thirst
         },
-        "inventory": []
+        "inventory": {
+            "water": 10,
+            "bread": 5
+        }
     }
     localStorage.setItem("player", JSON.stringify(newPlayer));
 };
@@ -37,12 +40,12 @@ export function CreatePlayer(data) {
 export function GetPlayer() {
     const player = localStorage.getItem("player");
     Debug("info", `GetPlayer() returned \nplayer:${player}`, false)
-    return JSON.parse(player);
+    return player;
 };
 
 export function UpdatePlayer(playerData) {
     localStorage.removeItem("player");
-    const table = {
+    localStorage.setItem("player", JSON.stringify({
         "user_name":  playerData.userName,
         "first_name": playerData.firstName,
         "last_name": playerData.lastName,
@@ -58,12 +61,27 @@ export function UpdatePlayer(playerData) {
             "hunger": playerData.metadata.hunger,
             "thirst": playerData.metadata.thirst
         },
-        "inventory": playerData.metadata.inventory
-    };
+        "inventory": playerData.inventory
+    }));
 
-    localStorage.setItem("player", {table});
-
-    Debug("success", `UpdatePlayer() has sucessfully saved player:${JSON.stringify(table)}`, false)
+    Debug("success", `UpdatePlayer() has sucessfully saved player:${JSON.stringify({
+        "user_name":  playerData.userName,
+        "first_name": playerData.firstName,
+        "last_name": playerData.lastName,
+        "race": playerData.race,
+        "type": playerData.type,
+        "level": playerData.level,
+        "avancement": playerData.avancement,
+        "metadata": {
+            "stamina" : playerData.metadata.stamina,
+            "rp": playerData.metadata.rp,
+            "pv": playerData.metadata.pv,
+            "mana": playerData.metadata.mana,
+            "hunger": playerData.metadata.hunger,
+            "thirst": playerData.metadata.thirst
+        },
+        "inventory": playerData.inventory
+    })}`, false)
 };
 
 export function DeletePlayer() {

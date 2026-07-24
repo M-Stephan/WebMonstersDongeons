@@ -25,16 +25,16 @@ function ShowNotify(type, title, description) {
 
     switch (type) {
         case "info":
-            color = "orange";
+            color = "#e9b961";
             break;
         case "success":
             color = "#82c57e";
             break;
         case "error":
-            color = "#913232";
+            color = "#ec5f5f";
             break;
         default:
-            color = "purple";
+            color = "#ad6beb";
             break;
     };
     

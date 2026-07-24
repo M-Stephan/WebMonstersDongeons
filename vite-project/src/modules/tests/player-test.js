@@ -4,8 +4,8 @@ import { Notify } from "../utils/notify.js";
 
 
 export function PlayerTests() {
-
     let player;
+
     const data = {
         userName: "neodarkcrow",
         firstName: "Neo",
@@ -23,16 +23,18 @@ export function PlayerTests() {
     CreatePlayer(data);
 
     player = GetPlayer();
+    let parsedPlayer = JSON.parse(player)
 
-    Debug("success", JSON.stringify(player), false);
+    console.log(parsedPlayer);
 
-    player["metadata"]["thirst"] = 180;
-    player["metadata"]["hunger"] = 180;
-    player["metadata"]["stamina"] = 75;
+    parsedPlayer["metadata"]["thirst"] = 180;
+    parsedPlayer["metadata"]["hunger"] = 180;
+    parsedPlayer["metadata"]["stamina"] = 75;
 
-    UpdatePlayer(player);
+    UpdatePlayer(parsedPlayer);
     
     Debug("success", JSON.stringify(player), false);
+
     setTimeout(() => {
         Notify("success", "Création de personnage", "Felicitation ton personnage a bien été créé", 6);
     }, 5000);

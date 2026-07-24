@@ -85,10 +85,31 @@ body {
   place-items: center;
 }
 
+input {
+  background-color: rgba(99, 61, 30, 0.747);
+  color: #ceac79;
+}
+
+input::after {
+  background-color: rgba(99, 61, 30, 0.747);
+  color: #ceac79;
+}
+
+input::content {
+  background-color: rgba(99, 61, 30, 0.747);
+  color: #ceac79;
+}
+
 .main-menu-btn {
   border: solid 1px rgba(70, 48, 32, 0.137);
-  width: 200px;
-  height: 80px;
+  padding-right: 35px;
+  padding-left: 35px;
+  font-size: 50px;
+  font-family: var(--font-family);
+  font-style: var(--font-style);
+  background-color: rgba(99, 61, 30, 0.747);
+  color: #ceac79;
+  height: 130px;
   border-radius: 15px;
 }
 

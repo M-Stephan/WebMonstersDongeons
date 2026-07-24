@@ -89,7 +89,10 @@ export function CreatePlayerForm() {
 
         CreatePlayer(data);
         
-        const playerData = GetPlayer();
+        const raw = GetPlayer();
+        if (!raw) return;
+
+        const playerData = JSON.parse(raw);
         
         StartGame(playerData);
     });

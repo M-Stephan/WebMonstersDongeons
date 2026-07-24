@@ -4,6 +4,7 @@ import { Debug } from "../utils/debug.js";
 
 export function CreatePlayerForm() {
     const app = document.getElementById("app-main-content");
+
     app.innerHTML = `
         <h1>Monsters & Dongeons</h1>
         <h2>Création de personnage</h2>
@@ -77,9 +78,11 @@ export function CreatePlayerForm() {
                 thirst: 200
             }
         };
+
         CreatePlayer(data);
         
         const playerData = GetPlayer();
+        
         StartGame(playerData);
     });
 }

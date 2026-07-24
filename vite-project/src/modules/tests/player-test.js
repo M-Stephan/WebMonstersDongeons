@@ -31,6 +31,7 @@ export function PlayerTests() {
     player["metadata"]["stamina"] = 75;
 
     UpdatePlayer(player);
+    
     Debug("success", JSON.stringify(player), false);
     setTimeout(() => {
         Notify("success", "Création de personnage", "Felicitation ton personnage a bien été créé", 6);

@@ -28,7 +28,7 @@ function ShowNotify(type, title, description) {
             color = "orange";
             break;
         case "success":
-            color = "green";
+            color = "rgb(123, 252, 32)";
             break;
         case "error":
             color = "red";
@@ -36,13 +36,19 @@ function ShowNotify(type, title, description) {
         default:
             color = "purple";
             break;
-    }
+    };
     
     notifyBox.classList.remove("hide-notify");
     notifyBox.classList.add("show-notify");
+
     const notify = document.createElement("div");
-    notify.style.display = "grid";
-    notify.id = "notify";
+    notify.classList.add("notify");
+
+    let toArrayWordId = title.toLowerCase().split(" ");
+    let uniqueWordId = toArrayWordId.join("_");
+
+    notify.id = "notify_" + uniqueWordId;
+
     notify.innerHTML = `
         <h2 style="color:${color};">${title}</h2>
         <p>${description}</p>
@@ -56,4 +62,4 @@ export function Notify(type, title, description, duration) {
     setTimeout(() => {
         HideNotify()
     }, duration * 1000);
-}
+};

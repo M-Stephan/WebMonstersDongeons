@@ -1,6 +1,7 @@
 import { Debug } from "../utils/debug.js";
 
 export function CreatePlayer(data) {
+    Debug("info", "function CreatePlayer has been called", true);
     const playerTestEnabled = true;
 
     let stats;
@@ -58,5 +59,6 @@ export function UpdatePlayer(playerData) {
 };
 
 export function DeletePlayer() {
+    alert("Êtes-vous sûr de vouloir supprimer la partie ?");
     localStorage.removeItem("player");
 };

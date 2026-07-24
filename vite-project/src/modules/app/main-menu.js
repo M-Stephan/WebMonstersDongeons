@@ -1,3 +1,4 @@
+import { DeletePlayer } from "../models/players.js";
 import { CreatePlayerForm } from "./create-player.js";
 
 export function MainMenu() {
@@ -21,5 +22,14 @@ export function MainMenu() {
     createBtn.addEventListener("click", function() {
         CreatePlayerForm();
     });
+
+    continueBtn.addEventListener("click", function() {
+        CreatePlayerForm();
+    });    
+    
+    deleteBtn.addEventListener("click", function() {
+        DeletePlayer();
+    });
+        
 };
 

@@ -8,8 +8,8 @@ export function PlayerTests() {
     let player;
     const data = {
         userName: "neodarkcrow",
-        firstname: "Neo",
-        lastname: "Carter",
+        firstName: "Neo",
+        lastName: "Carter",
         race: "human",
         type: "none",
         stats: {

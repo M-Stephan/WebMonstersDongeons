@@ -5,8 +5,7 @@ export function MainTests() {
     const tests = {
         notify: false,
         player: false
-    }
-
+    };
 
     if (tests.notify) {
         setTimeout(() => {

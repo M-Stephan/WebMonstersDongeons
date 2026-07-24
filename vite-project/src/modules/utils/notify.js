@@ -28,10 +28,10 @@ function ShowNotify(type, title, description) {
             color = "orange";
             break;
         case "success":
-            color = "rgb(123, 252, 32)";
+            color = "#2c5529";
             break;
         case "error":
-            color = "red";
+            color = "#913232";
             break;
         default:
             color = "purple";

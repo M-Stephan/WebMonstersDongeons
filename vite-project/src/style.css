@@ -10,7 +10,9 @@
   --social-bg: rgba(244, 243, 236, 0.5);
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
+  --font-family: "Lovers Quarrel", cursive;
+  --font-weight: 800;
+  --font-style: normal;
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
@@ -41,15 +43,21 @@
 }
 
 .notify {
+  font-size: 40px;
+  font-family: var(--font-family);
+  font-weight: var(--font-weight);
+  font-style: var(--font-style);
   position: relative;
   display: block;
   padding: 20px;
   margin: 15px;
-  max-height: 250px;
+  min-height: 100px;
+  min-width: 350px;
+  max-height: 150px;
   max-width: 450px;
-  border: solid 1px rgba(180, 0, 187, 0.642);
-  box-shadow: 0px 0px 15px 0px rgba(215, 1, 215, 0.523);
+  border: solid 5px rgb(59, 35, 18);
+  box-shadow: 0px 0px 35px 8px rgba(44, 44, 44, 0.596);
   border-radius: 15px;
-  background-color: rgba(119, 3, 119, 0.463);
-  color:#434343;
+  background-color: rgba(66, 46, 29, 0.63);
+  color:#20160d;
 }

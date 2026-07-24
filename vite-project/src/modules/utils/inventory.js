@@ -50,3 +50,37 @@ export function addInventoryItem(item, count) {
     Notify("success", "Inventaire", `Tu as reçu ${count} ${items[item]["label"]}.`, 5);
 }
 
+export function UseConsummable(item) {
+    let hasItemAndCount = getInventoryItem(item, 1)
+    
+    if (hasItemAndCount) {
+        const raw = GetPlayer();
+        if (!raw) return;
+        const player = JSON.parse(raw);
+
+        switch (
+            items[item]["type"]) {
+            case 'eat':
+                player.metadata["hunger"] = player.metadata["hunger"] + items[item]["upStats"];
+                break;
+            case 'drink':
+                player.metadata["thirst"] = player.metadata["thirst"] + items[item]["upStats"];
+                break;
+            case 'heal':
+                player.metadata["pv"] = player.metadata["pv"] + items[item]["upStats"];
+                break;
+            case 'mana':
+                player.metadata["mana"] = player.metadata["mana"] + items[item]["upStats"];
+                break;
+            case 'exp':
+                player.metadata["rp"] = player.metadata["rp"] + items[item]["upStats"];
+                break;
+            case 'stamina':
+                player.metadata["stamina"] = player.metadata["stamina"] + items[item]["upStats"];
+                break;
+        }
+        removeInventoryItem(item, 1);
+        UpdatePlayer(player);
+    }
+}
+

@@ -1,5 +1,5 @@
 import { Debug } from "../utils/debug.js";
-import { getPlayerInventory, removeInventoryItem, addInventoryItem} from "../utils/inventory.js";
+import { getPlayerInventory, removeInventoryItem, addInventoryItem, UseConsummable } from "../utils/inventory.js";
 import { PlayerTests } from "./player-test.js"
 
 export function getInventoryTest() {
@@ -15,4 +15,8 @@ export function getInventoryTest() {
     setTimeout(() => {
         removeInventoryItem("bread", 3);
     }, 27000);
+    
+    setTimeout(() => {
+        UseConsummable("water")
+    }, 36000);
 };

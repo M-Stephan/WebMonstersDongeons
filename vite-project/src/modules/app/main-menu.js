@@ -2,6 +2,13 @@ import { DeletePlayer } from "../models/players.js";
 import { CreatePlayerForm } from "./create-player.js";
 
 export function MainMenu() {
+    
+    const bodyStyle = document.body.style
+    bodyStyle.backgroundImage = 'url("/parchemin.png")';
+    bodyStyle.backgroundRepeat = "no-repeat";
+    bodyStyle.backgroundSize;
+    bodyStyle.backgroundColor = "#222222c9";
+    
     const app = document.getElementById("app-main-content");
     app.innerHTML = `
         <h1>Monsters & Dongeons</h1>

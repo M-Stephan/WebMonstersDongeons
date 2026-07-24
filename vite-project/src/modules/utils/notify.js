@@ -50,7 +50,7 @@ function ShowNotify(type, title, description) {
     notify.id = "notify_" + uniqueWordId;
 
     notify.innerHTML = `
-        <h2 style="color:${color};">${title}</h2>
+        <h4 style="color:${color};">${title}</h4>
         <p>${description}</p>
     `;
     notifyBox.appendChild(notify);

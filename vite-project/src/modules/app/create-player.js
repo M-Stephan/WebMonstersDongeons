@@ -10,37 +10,45 @@ export function CreatePlayerForm() {
         <h2>Création de personnage</h2>
         <form id="create-player-form">
 
-            <label for="username-input">Nom d'utilisateur</label>
-            <input type="text" id="username-input">
-            
-            <label for="firstname-input">Prénom du personnage</label>
-            <input type="text" id="firstname-input">
-            
-            <label for="lastname-input">Nom du personnage</label>
-            <input type="text" id="lastname-input">
-
+            <div id="form-names">
+                <div>
+                    <label for="username-input">Nom d'utilisateur</label>
+                    <input type="text" id="username-input">
+                </div>
+                <div>
+                    <label for="firstname-input">Prénom du personnage</label>
+                    <input type="text" id="firstname-input">
+                </div>
+                <div>
+                    <label for="lastname-input">Nom du personnage</label>
+                    <input type="text" id="lastname-input">
+                </div>
             <div>
-                <p>Choisir la race:</p>
-                <label for="race-input">Troll</label>
-                <input type="radio" name="race" id="troll">
-                <label for="race-input">Elfe</label>
-                <input type="radio" name="race" id="elfe">
-                <label for="race-input">Nain</label>
-                <input type="radio" name="race" id="nain">
-                <label for="race-input">Humain</label>
-                <input type="radio" name="race" id="human">
-            </div>
-            <div>
-                <p>Choisir l'élément:</p>
-                <p>Si vous avez choisi la race humaine la classe d'élément est inactive</p>
-                <label for="type-input">Eau</label>
-                <input type="radio" name="type" id="water">
-                <label for="type-input">Terre</label>
-                <input type="radio" name="type" id="dirt">
-                <label for="type-input">Feu</label>
-                <input type="radio" name="type" id="fire">
-                <label for="type-input">Air</label>
-                <input type="radio" name="type" id="air">
+            
+            <p>Si vous choisissez la race humaine la classe d'élément est inactive</p>
+            <div id="race-elem">
+                <div>
+                    <p>Choisir la race:</p>
+                    <label for="race-input">Troll</label>
+                    <input type="radio" name="race" id="troll">
+                    <label for="race-input">Elfe</label>
+                    <input type="radio" name="race" id="elfe">
+                    <label for="race-input">Nain</label>
+                    <input type="radio" name="race" id="nain">
+                    <label for="race-input">Humain</label>
+                    <input type="radio" name="race" id="human">
+                </div>
+                <div>
+                    <p>Choisir l'élément:</p>
+                    <label for="type-input">Eau</label>
+                    <input type="radio" name="type" id="water">
+                    <label for="type-input">Terre</label>
+                    <input type="radio" name="type" id="dirt">
+                    <label for="type-input">Feu</label>
+                    <input type="radio" name="type" id="fire">
+                    <label for="type-input">Air</label>
+                    <input type="radio" name="type" id="air">
+                </div>
             </div>
             <input type="submit", id="create-submit" value="Créer le personnage">
         </form>

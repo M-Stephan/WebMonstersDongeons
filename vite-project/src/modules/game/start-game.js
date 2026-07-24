@@ -1,12 +1,10 @@
+import { Notify } from "../utils/notify.js";
+import { GetPlayer, UpdatePlayer } from "../models/players.js";
+
 export function StartGame(playerData) {
     const app = document.getElementById("app-main-content");
     let ennemy;
     let race;
-    const bodyStyle = document.body.style
-    bodyStyle.backgroundImage = 'url("/parchemin.png")';
-    bodyStyle.backgroundRepeat = "no-repeat";
-    bodyStyle.backgroundSize;
-    bodyStyle.backgroundColor = "#222222c9";
 
     switch (playerData["race"]) {
         case "human":
@@ -46,7 +44,22 @@ export function StartGame(playerData) {
             Quand soudain il y a du bruit dans les buissons...
         </p>
 
-        <button class="start-game-btn-buis" id="watch-in-the-buis">Regarder dans le buisson</button><br><br>
-        <button class="start-game-btn-castle" id="go-to-the-castle">Continuer sa route</button>
+        <button class="start-game-btn-buis" id="watch-in-the-buis">Regarder dans le buisson<br><i>(stamina -5)</i></button>
+        <button class="start-game-btn-castle" id="go-to-the-castle">Continuer sa route<br><i>(stamina -10)</i></button>
     `;
+
+    const buisBtn = document.getElementById("watch-in-the-buis");
+    const castleBtn = document.getElementById("go-to-the-castle");
+
+    buisBtn.addEventListener("click", function() {
+        Notify("info", `Action`, "Tu regardes dans le buisson..", 3);
+        playerData["metadata"]["stamina"] = playerData["metadata"]["stamina"] - 5;
+        UpdatePlayer(playerData);
+    })
+
+    castleBtn.addEventListener("click", function() {
+        Notify("info", `Action`, "Tu continue ton chemin..", 3);
+        playerData["metadata"]["stamina"] = playerData["metadata"]["stamina"] - 10;
+        UpdatePlayer(playerData);
+    })
 }

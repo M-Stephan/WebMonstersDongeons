@@ -39,8 +39,7 @@ export function GetPlayer() {
 
 export function UpdatePlayer(playerData) {
     localStorage.removeItem("player");
-
-    localStorage.setItem("player", {
+    const table = {
         "user_name":  playerData.userName,
         "first_name": playerData.firstName,
         "last_name": playerData.lastName,
@@ -55,7 +54,11 @@ export function UpdatePlayer(playerData) {
             "hunger": playerData.metadata.hunger,
             "thirst": playerData.metadata.thirst
         }
-    });
+    };
+
+    localStorage.setItem("player", {table});
+
+    Debug("sucess", `UpdatePlayer() has sucessfully saved player:${JSON.stringify(table)}`, false)
 };
 
 export function DeletePlayer() {

@@ -1,8 +1,13 @@
+// Set to true to enable debug system
 const debugEnabled = true;
 
-function Debug(type, text) {
-    if (!debugEnabled) return;
-    
+// Set to true to enable debug system whan a function is called
+const debugFunctionEnabled = true;
+
+export function Debug(type, text, functionCall) {
+
+    if ((functionCall && !debugFunctionEnabled) || !debugEnabled) return;
+
     let prefix;
     let message;
 
@@ -27,5 +32,5 @@ function Debug(type, text) {
         message =`[SCRIPT ${prefix}]: ${text}`;
     };
 
-    console.log(message)
+    console.log(message);
 };

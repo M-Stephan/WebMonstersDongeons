@@ -1,0 +1,59 @@
+import { Debug } from "./debug.js";
+
+export function CreateNotifyBox() {
+    Debug("info", "function CreateNotifyBox has been called", true);
+    const app = document.getElementById("app");
+    app.innerHTML = `
+        <div id="notify-box" class="hide-notify">
+        </div>
+        `;
+};
+
+function HideNotify() {
+    Debug("info", "function HideNotify has been called", true);
+    const notifyBox = document.getElementById("notify-box");
+    notifyBox.innerHTML = ``;
+    notifyBox.classList.remove("show-notify");
+    notifyBox.classList.add("hide-notify");
+};
+
+function ShowNotify(type, title, description) {
+    Debug("info", "function ShowNotify has been called", true);
+
+    let color;
+    const notifyBox = document.getElementById("notify-box");
+
+    switch (type) {
+        case "info":
+            color = "orange";
+            break;
+        case "success":
+            color = "green";
+            break;
+        case "error":
+            color = "red";
+            break;
+        default:
+            color = "purple";
+            break;
+    }
+    
+    notifyBox.classList.remove("hide-notify");
+    notifyBox.classList.add("show-notify");
+    const notify = document.createElement("div");
+    notify.style.display = "grid";
+    notify.id = "notify";
+    notify.innerHTML = `
+        <h2 style="color:${color};">${title}</h2>
+        <p>${description}</p>
+    `;
+    notifyBox.appendChild(notify);
+};
+
+export function Notify(type, title, description, duration) {
+    Debug("info", "function Notify has been called", true);
+    ShowNotify(type, title, description);
+    setTimeout(() => {
+        HideNotify()
+    }, duration * 1000);
+}

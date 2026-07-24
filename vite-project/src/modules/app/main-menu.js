@@ -2,7 +2,6 @@ import { DeletePlayer } from "../models/players.js";
 import { CreatePlayerForm } from "./create-player.js";
 
 export function MainMenu() {
-    
     const bodyStyle = document.body.style
     bodyStyle.backgroundImage = 'url("/parchemin.png")';
     bodyStyle.backgroundRepeat = "no-repeat";

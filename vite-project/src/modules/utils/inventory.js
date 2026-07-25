@@ -3,24 +3,24 @@ import { Debug } from "./debug.js";
 import { Notify } from "./notify.js";
 import { items } from "../models/items.js";
 
-export function getPlayerInventory() {
+export function GetPlayerInventory() {
     const raw = GetPlayer();
-    if (!raw) return null; // évite le crash
+    if (!raw) return null;
 
     const player = JSON.parse(raw);
     Debug("success", "getPlayerInventory has successfully returned inventory:" + JSON.stringify(player.inventory));
     return player.inventory;
 };
 
-export function getInventoryItem(itemNeeded, count) {
-    const inventory = getPlayerInventory();
-    if (!inventory) return false; // évite le crash si player=null
+export function GetInventoryItem(itemNeeded, count) {
+    const inventory = GetPlayerInventory();
+    if (!inventory) return false;
 
     return inventory[itemNeeded] >= count;
 };
 
-export function removeInventoryItem(itemNeeded, count) {
-    let hasItemAndCount = getInventoryItem(itemNeeded, count);
+export function RemoveInventoryItem(itemNeeded, count) {
+    let hasItemAndCount = GetInventoryItem(itemNeeded, count);
     if (hasItemAndCount) {
         var player = JSON.parse(GetPlayer());
         var inventory = player.inventory;
@@ -32,7 +32,7 @@ export function removeInventoryItem(itemNeeded, count) {
     };
 };
 
-export function addInventoryItem(item, count) {
+export function AddInventoryItem(item, count) {
     const raw = GetPlayer();
     if (!raw) return;
 
@@ -51,7 +51,7 @@ export function addInventoryItem(item, count) {
 }
 
 export function UseConsummable(item) {
-    let hasItemAndCount = getInventoryItem(item, 1)
+    let hasItemAndCount = GetInventoryItem(item, 1)
     
     if (hasItemAndCount) {
         const raw = GetPlayer();
@@ -79,7 +79,7 @@ export function UseConsummable(item) {
                 player.metadata["stamina"] = player.metadata["stamina"] + items[item]["upStats"];
                 break;
         }
-        removeInventoryItem(item, 1);
+        RemoveInventoryItem(item, 1);
         UpdatePlayer(player);
     }
 }

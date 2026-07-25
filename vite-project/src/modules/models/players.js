@@ -32,7 +32,8 @@ export function CreatePlayer(data) {
         "inventory": {
             "water": 10,
             "bread": 5
-        }
+        },
+        "powers": ["simple_punch", "critical_punch"]
     }
     localStorage.setItem("player", JSON.stringify(newPlayer));
 };
@@ -61,7 +62,8 @@ export function UpdatePlayer(playerData) {
             "hunger": playerData.metadata.hunger,
             "thirst": playerData.metadata.thirst
         },
-        "inventory": playerData.inventory
+        "inventory": playerData.inventory,
+        "powers": playerData.powers
     }));
 
     Debug("success", `UpdatePlayer() has sucessfully saved player:${JSON.stringify({
@@ -80,7 +82,8 @@ export function UpdatePlayer(playerData) {
             "hunger": playerData.metadata.hunger,
             "thirst": playerData.metadata.thirst
         },
-        "inventory": playerData.inventory
+        "inventory": playerData.inventory,
+        "powers": playerData.powers
     })}`, false)
 };
 

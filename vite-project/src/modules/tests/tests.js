@@ -1,12 +1,14 @@
 import { PlayerTests } from "./player-test.js";
 import { NotifyTest } from "./notify-test.js";
-import { getInventoryTest } from "./inventory-tests.js";
+import { GetInventoryTest } from "./inventory-tests.js";
+import { CombatTest } from "./combat-test.js";
 
 export function MainTests() {
     const tests = {
         notify: false,
         player: false,
-        inventory: false
+        inventory: false,
+        combat: true
     };
 
     if (tests.notify) {
@@ -23,7 +25,15 @@ export function MainTests() {
     
     if (tests.inventory) {
         setTimeout(() => {
-            getInventoryTest();
+            GetInventoryTest();
         }, 5000);
     };
+    
+    if (tests.combat) {
+        setTimeout(() => {
+            CombatTest();
+        }, 5000);
+    };
+
+
 };

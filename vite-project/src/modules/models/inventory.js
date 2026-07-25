@@ -1,7 +1,7 @@
-import { GetPlayer, UpdatePlayer } from "../models/players.js";
-import { Debug } from "./debug.js";
-import { Notify } from "./notify.js";
-import { items } from "../models/items.js";
+import { GetPlayer, UpdatePlayer } from "./players.js";
+import { Debug } from "../utils/debug.js";
+import { Notify } from "../utils/notify.js";
+import { items } from "./items.js";
 
 export function GetPlayerInventory() {
     const raw = GetPlayer();

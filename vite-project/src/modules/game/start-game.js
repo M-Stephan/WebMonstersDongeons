@@ -1,6 +1,6 @@
 import { Notify } from "../utils/notify.js";
 import { GetPlayer, UpdatePlayer } from "../models/players.js";
-import { SetCombatPage } from "../app/combat-page.js";
+import { SetFirstCombatPage } from "../app/combat-page.js";
 
 export function StartGame(playerData) {
     const app = document.getElementById("app-main-content");
@@ -57,7 +57,7 @@ export function StartGame(playerData) {
         playerData["metadata"]["stamina"] = playerData["metadata"]["stamina"] - 5;
         playerData["avancement"] = 1.1;
         UpdatePlayer(playerData);
-        SetCombatPage("roar");
+        SetFirstCombatPage("roar");
     })
 
     castleBtn.addEventListener("click", function() {

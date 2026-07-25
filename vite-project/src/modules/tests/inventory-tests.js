@@ -1,5 +1,5 @@
 import { Debug } from "../utils/debug.js";
-import { GetPlayerInventory, RemoveInventoryItem, AddInventoryItem, UseConsummable } from "../utils/inventory.js";
+import { GetPlayerInventory, RemoveInventoryItem, AddInventoryItem, UseConsummable } from "../models/inventory.js";
 import { PlayerTests } from "./player-test.js"
 
 export function GetInventoryTest() {

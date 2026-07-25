@@ -134,8 +134,8 @@ input::content {
   font-size: 60px;
   font-family: var(--font-family);
   font-style: var(--font-style);
-  background-color: rgb(59, 99, 59);
-  color: #0f200d;
+  background-color: rgba(41, 70, 41, 0.705);
+  color: #a9e9a2;
   height: 90px;
   border-radius: 15px;
 }
@@ -151,8 +151,8 @@ input::content {
   font-size: 50px;
   font-family: var(--font-family);
   font-style: var(--font-style);
-  background-color: rgb(40, 95, 56);
-  color: #977b52;
+  background-color: rgba(40, 95, 56, 0.753);
+  color: #98ec8d;
   height: 130px;
   border-radius: 15px;
 }
@@ -168,8 +168,8 @@ input::content {
   font-size: 50px;
   font-family: var(--font-family);
   font-style: var(--font-style);
-  background-color: rgb(99, 61, 30);
-  color: #977b52;
+  background-color: rgba(94, 62, 42, 0.712);
+  color: #d6ac75;
   height: 130px;
   border-radius: 15px;
 }
@@ -188,4 +188,34 @@ input::content {
   place-items: center;
   gap: 250px;
   grid-template-columns: 1fr 1fr;
+}
+
+#start-combat {
+  position: relative;
+  top: 25px;
+  left: 17vw;
+  display: grid;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 25px;
+  width: 1055px;
+}
+
+#first-combat {
+  position: relative;
+  top: 25vh;
+  border: solid 1px rgba(70, 48, 32, 0.137);
+  padding-right: 50px;
+  padding-left: 50px;
+  font-size: 60px;
+  font-family: var(--font-family);
+  font-style: var(--font-style);
+  background-color: rgba(54, 85, 50, 0.808);
+  color: #a9e9a2;
+  height: 90px;
+  border-radius: 15px;
+}
+
+#first-combat:hover {
+    box-shadow: 0px 0px 20px 5px rgba(94, 141, 55, 0.596);
 }

@@ -1,5 +1,5 @@
 // Set to true to enable debug system
-const debugEnabled = true;
+export const debugEnabled = true;
 
 // Set to true to enable debug system whan a function is called
 const debugFunctionEnabled = true;

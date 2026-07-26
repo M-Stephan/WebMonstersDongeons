@@ -20,7 +20,7 @@ export function CreatePlayer(data) {
         "race": data.race,
         "type": data.type,
         "level": 1,
-        "avancement": 1,
+        "avancement": "1.0",
         "metadata": {
             "stamina" : stats.stamina,
             "rp": 0,
@@ -92,4 +92,12 @@ export function DeletePlayer() {
     if (!response) return;
     localStorage.removeItem("player");
     Notify("info", "Suppression", "La partie a été correctement supprimée", 5);
+};
+
+export function GetPlayerAvancement() {
+    const raw = GetPlayer();
+    if (!raw) return;
+    const playerData = JSON.parse(raw);
+    const avancement = playerData["avancement"];
+    return avancement;
 };

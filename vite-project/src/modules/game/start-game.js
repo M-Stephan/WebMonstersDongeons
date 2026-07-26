@@ -1,6 +1,7 @@
 import { Notify } from "../utils/notify.js";
 import { GetPlayer, UpdatePlayer } from "../models/players.js";
-import { SetFirstCombatPage } from "../app/combat-page.js";
+import { SetFirstCombatPage } from "../app/first-combat-page.js";
+import { animals } from "../models/npc.js";
 
 export function StartGame(playerData) {
     const app = document.getElementById("app-main-content");
@@ -29,11 +30,11 @@ export function StartGame(playerData) {
     app.innerHTML = `
         <h1>Monsters & Dongeons</h1>
         <h2>Le commencement</h2>
-        <h4>
-            ${playerData["firstname"]} ${playerData["lastname"]}, né dans un petit village isolé, au cœur d’un monde où les ${race} régnaient en maîtres.<br>
-            Jusqu'au jour où tout a basculé!
-        </h4>
+
         <p>
+            ${playerData["firstname"]} ${playerData["lastname"]}, né dans un petit village isolé, au cœur d’un monde où les ${race} régnaient en maîtres.<br>
+            Jusqu'au jour où tout a basculé!<br>
+
             Une horde ${ennemy} a attaqué le village, détruit chaque maison, massacré des innocents et tes parents ont péri en tentant de te protéger.<br>
             Trop jeune pour te battre, tu as du te cacher… et tu as survécu.<br>
             Depuis ce jour, tu as grandi seul, loin des autres, apprenant à vivre dans l’ombre et à te débrouiller par tes propres moyens.<br><br>
@@ -44,10 +45,11 @@ export function StartGame(playerData) {
             À l'instant, en cette fin d'après midi calme et ensoleillée, traversant une énorme forêt tu vois à moins de 2 kilomètres un grand et magnifique royaume!<br>
             Quand soudain il y a du bruit dans les buissons...
         </p>
-
-        <button class="start-game-btn-buis" id="watch-in-the-buis">Regarder dans le buisson<br><i>(stamina -5)</i></button>
-        <button class="start-game-btn-castle" id="go-to-the-castle">Continuer sa route<br><i>(stamina -10)</i></button>
-    `;
+        <div>
+            <button class="start-game-btn-buis" id="watch-in-the-buis">Regarder dans le buisson<br><i>(stamina -5)</i></button>
+            <button class="start-game-btn-castle" id="go-to-the-castle">Continuer sa route<br><i>(stamina -10)</i></button>
+        </div>    
+        `;
 
     const buisBtn = document.getElementById("watch-in-the-buis");
     const castleBtn = document.getElementById("go-to-the-castle");
@@ -55,15 +57,28 @@ export function StartGame(playerData) {
     buisBtn.addEventListener("click", function() {
         Notify("info", `Action`, "Tu regardes dans le buisson..", 3);
         playerData["metadata"]["stamina"] = playerData["metadata"]["stamina"] - 5;
-        playerData["avancement"] = 1.1;
+        playerData["avancement"] = "1.1";
         UpdatePlayer(playerData);
-        SetFirstCombatPage("roar");
+        const npc = "roar";
+        setTimeout(() => {
+            setTimeout(() => {
+            Notify('info', `Le combat contre ${animals[npc]["label"]} commence dans:`, "3", 1)
+            }, 1000);
+            setTimeout(() => {
+                Notify('info', `Le combat contre ${animals[npc]["label"]} commence dans:`, "2", 1)
+            }, 2000);
+            setTimeout(() => {
+                Notify('info', `Le combat contre ${animals[npc]["label"]} commence dans:`, "1", 1)
+            }, 3000);
+            SetFirstCombatPage(npc);
+        }, 3000);
+        
     })
 
     castleBtn.addEventListener("click", function() {
-        Notify("info", `Action`, "Tu continue ton chemin..", 3);
         playerData["metadata"]["stamina"] = playerData["metadata"]["stamina"] - 10;
-        playerData["avancement"] = 1.2;
+        playerData["avancement"] = "1.2";
         UpdatePlayer(playerData);
+        Notify("info", `Action`, "Tu continue ton chemin..", 3);
     })
 }

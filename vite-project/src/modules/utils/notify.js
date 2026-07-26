@@ -6,7 +6,7 @@ export function CreateNotifyBox() {
     app.innerHTML = `
         <div id="notify-box" class="hide-notify">
         </div>
-        `;
+    `;
 };
 
 function HideNotify() {
@@ -61,5 +61,5 @@ export function Notify(type, title, description, duration) {
     ShowNotify(type, title, description);
     setTimeout(() => {
         HideNotify()
-    }, duration * 1000);
+    }, duration * 950);
 };

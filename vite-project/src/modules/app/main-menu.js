@@ -1,5 +1,6 @@
 import { DeletePlayer } from "../models/players.js";
 import { CreatePlayerForm } from "./create-player.js";
+import { ContinueGame } from "./continue-game.js";
 
 export function MainMenu() {
     const bodyStyle = document.body.style
@@ -33,7 +34,7 @@ export function MainMenu() {
     });
 
     continueBtn.addEventListener("click", function() {
-        CreatePlayerForm();
+        ContinueGame();
     });    
     
     deleteBtn.addEventListener("click", function() {

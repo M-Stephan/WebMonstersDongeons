@@ -1,6 +1,6 @@
 import { GetPlayer, GetPlayerAvancement } from "../models/players.js";
 import { StartGame } from "../game/start-game.js";
-import { SetFirstCombatPage } from "./first-combat-page.js";
+import { SetFirstCombatPage } from "../game/first-combat-page.js";
 import { Notify } from "../utils/notify.js";
 import { animals } from "../models/npc.js";
 

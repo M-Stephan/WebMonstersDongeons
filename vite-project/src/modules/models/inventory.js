@@ -3,6 +3,46 @@ import { Debug } from "../utils/debug.js";
 import { Notify } from "../utils/notify.js";
 import { items } from "./items.js";
 
+export function SetInventoryPage() {        
+    const app = document.getElementById("app-main-content");
+    const inventory = document.createElement("div");
+
+    inventory.id = "inventory-block";
+
+    app.appendChild(inventory);
+
+    const playerItems = JSON.stringify(GetPlayerInventory());
+
+    console.log(playerItems)
+    let i = 0;
+
+    playerItems.forEach(item => {
+        const slot = document.createElement("button");
+        slot.innerHTML = `
+            <p>${items.item["label"]}</p>
+        `;
+        slot.id = `slot_${i}`;
+
+        inventory.appendChild(slot);
+        i++;
+    });
+};
+
+export function SetKeyInventory() {
+    window.addEventListener("keydown", function(e) {
+        e.preventDefault();
+        if (e.key.toLowerCase() === 'i' || e.key === 'I') {
+
+            const app = document.getElementById("app-main-content");
+            const inv = document.getElementById("inventory-block");
+            if (inv) {
+                app.removeChild(inv);
+            };
+            SetInventoryPage();
+        };
+    });
+}
+
 export function GetPlayerInventory() {
     const raw = GetPlayer();
     if (!raw) return null;

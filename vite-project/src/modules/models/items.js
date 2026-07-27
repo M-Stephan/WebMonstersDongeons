@@ -1,14 +1,14 @@
 export const items = {
     /* ###### FOODS & DRINKS ###### */
     "water": {
-        "label": "poche d'eau",
+        "label": "Poche d'eau",
         "upStats": 25,
         "type": "drink",
         "consume": true
     },
 
     "bread": {
-        "label": "pain",
+        "label": "Pain",
         "upStats": 25,
         "type": "eat",
         "consume": true

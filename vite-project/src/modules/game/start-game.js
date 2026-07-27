@@ -1,7 +1,8 @@
 import { Notify } from "../utils/notify.js";
 import { GetPlayer, UpdatePlayer } from "../models/players.js";
-import { SetFirstCombatPage } from "../app/first-combat-page.js";
+import { SetFirstCombatPage } from "./first-combat-page.js";
 import { animals } from "../models/npc.js";
+import { SetKeyInventory } from "../models/inventory.js";
 
 export function StartGame(playerData) {
     const app = document.getElementById("app-main-content");
@@ -51,6 +52,8 @@ export function StartGame(playerData) {
         </div>    
         `;
 
+    SetKeyInventory();
+    
     const buisBtn = document.getElementById("watch-in-the-buis");
     const castleBtn = document.getElementById("go-to-the-castle");
 

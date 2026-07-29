@@ -15,11 +15,11 @@ export function SetInventoryPage() {
 
     console.log(playerItems)
     let i = 0;
-
+    
     playerItems.forEach(item => {
         const slot = document.createElement("button");
         slot.innerHTML = `
-            <p>${items.item["label"]}</p>
+            <p>${items[item]["label"]}</p>
         `;
         slot.id = `slot_${i}`;
 

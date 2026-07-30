@@ -1,7 +1,9 @@
 import { Debug } from "../utils/debug.js";
 import { Notify } from "../utils/notify.js";
+import { CreateInventoryTable } from "../models/inventory.js";
 
 export function CreatePlayer(data) {
+    const inventory = CreateInventoryTable()
     Debug("info", "function CreatePlayer has been called", true);
     const playerTestEnabled = true;
 
@@ -29,10 +31,7 @@ export function CreatePlayer(data) {
             "hunger": stats.hunger,
             "thirst": stats.thirst
         },
-        "inventory": {
-            "water": 10,
-            "bread": 5
-        },
+        "inventory": inventory,
         "powers": ["simple_punch", "critical_punch"]
     }
     localStorage.setItem("player", JSON.stringify(newPlayer));

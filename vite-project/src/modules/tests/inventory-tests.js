@@ -1,22 +1,20 @@
+import { GetPlayerHasItemCount, AddItemCount, RemoveItemCount } from "../models/inventory.js";
 import { Debug } from "../utils/debug.js";
-import { GetPlayerInventory, RemoveInventoryItem, AddInventoryItem, UseConsummable } from "../models/inventory.js";
 import { PlayerTests } from "./player-test.js"
 
 export function GetInventoryTest() {
-    let playerInventory = GetPlayerInventory();
-    console.log(playerInventory);
-    RemoveInventoryItem("water", 3);
-    setTimeout(() => {
-        RemoveInventoryItem("bread", 8);
-    }, 9000);
-    setTimeout(() => {
-        AddInventoryItem("water", 3);
-    }, 18000);
-    setTimeout(() => {
-        RemoveInventoryItem("bread", 3);
-    }, 27000);
+    const hasItem = GetPlayerHasItemCount("water", 5);
+    const hasNotItem = GetPlayerHasItemCount("water", 11);
+
+    Debug("success", hasItem);
     
-    setTimeout(() => {
-        UseConsummable("water");
-    }, 36000);
+    Debug("success", hasNotItem);
+
+    AddItemCount("water", 5);
+    
+    AddItemCount("bulb", 1);
+
+    RemoveItemCount("water", 5);
+
+    RemoveItemCount("bulb", 1);
 };

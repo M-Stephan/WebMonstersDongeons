@@ -1,6 +1,6 @@
 import { DeletePlayer } from "../models/players.js";
 import { CreatePlayerForm } from "./create-player.js";
-import { ContinueGame } from "./continue-game.js";
+import { ContinueGame } from "../utils/continue-game.js";
 
 export function MainMenu() {
     const bodyStyle = document.body.style

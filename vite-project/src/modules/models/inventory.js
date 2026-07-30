@@ -1,126 +1,84 @@
-import { GetPlayer, UpdatePlayer } from "./players.js";
 import { Debug } from "../utils/debug.js";
-import { Notify } from "../utils/notify.js";
-import { items } from "./items.js";
+import { GetPlayer, UpdatePlayer } from "./players.js";
 
-export function SetInventoryPage() {        
-    const app = document.getElementById("app-main-content");
-    const inventory = document.createElement("div");
-
-    inventory.id = "inventory-block";
-
-    app.appendChild(inventory);
-
-    const playerItems = JSON.stringify(GetPlayerInventory());
-
-    console.log(playerItems)
-    let i = 0;
-    
-    playerItems.forEach(item => {
-        const slot = document.createElement("button");
-        slot.innerHTML = `
-            <p>${items[item]["label"]}</p>
-        `;
-        slot.id = `slot_${i}`;
-
-        inventory.appendChild(slot);
-        i++;
-    });
+export function CreateInventoryTable() {
+    const inventory = {
+        "weapons": {
+        },
+        "items": [
+            { "water": 10 },
+            { "bread": 10 }
+        ]
+    }
+    Debug("info", "CreateInventoryTable() has successfully created inventory table");
+    return inventory;
 };
-
-export function SetKeyInventory() {
-    window.addEventListener("keydown", function(e) {
-        e.preventDefault();
-        if (e.key.toLowerCase() === 'i' || e.key === 'I') {
-
-            const app = document.getElementById("app-main-content");
-            const inv = document.getElementById("inventory-block");
-            if (inv) {
-                app.removeChild(inv);
-            };
-            SetInventoryPage();
-        };
-    });
-}
 
 export function GetPlayerInventory() {
     const raw = GetPlayer();
-    if (!raw) return null;
 
-    const player = JSON.parse(raw);
-    Debug("success", "getPlayerInventory has successfully returned inventory:" + JSON.stringify(player.inventory));
-    return player.inventory;
+    if (!raw) return;
+
+    const playerData = JSON.parse(raw);
+
+    const inventory = playerData["inventory"];
+
+    Debug("info", `GetPlayerinventory() has successfully returned player inventory: ${inventory}`)
+    
+    return inventory;
 };
 
-export function GetInventoryItem(itemNeeded, count) {
+export function GetPlayerHasItemCount(item, count) {
     const inventory = GetPlayerInventory();
-    if (!inventory) return false;
+    const items = inventory.items;
 
-    return inventory[itemNeeded] >= count;
-};
+    return items.some(obj => obj[item] >= count);
+}
 
-export function RemoveInventoryItem(itemNeeded, count) {
-    let hasItemAndCount = GetInventoryItem(itemNeeded, count);
-    if (hasItemAndCount) {
-        var player = JSON.parse(GetPlayer());
-        var inventory = player.inventory;
-        inventory[itemNeeded] = inventory[itemNeeded] - count;
-        UpdatePlayer(player);
-        inventory[itemNeeded] <= 5 ? Notify("error","Attention", `Il te reste ${inventory[itemNeeded]} ${items[itemNeeded]["label"]}`, 5) : Notify("info", "Information", `Tu as utilisé ${count} ${items[itemNeeded]["label"]}`, 5) ; 
-    } else {
-        Notify("error","Ce n'est pas possible.", `Tu n'a pas assez ou aucun ${items[itemNeeded]["label"]} sur toi!`, 8);
-    };
-};
-
-export function AddInventoryItem(item, count) {
+export function AddItemCount(item, count) {
+    const hasItemCount = GetPlayerHasItemCount(item, count);
+    const inventory = GetPlayerInventory();
+    const newItem = { [item]: count };
     const raw = GetPlayer();
     if (!raw) return;
 
-    const player = JSON.parse(raw);
-    const inventory = player.inventory;
+    const playerData = JSON.parse(raw);
+    const items = playerData.inventory.items;
 
-    if (inventory[item]) {
-        inventory[item] += count;
+    if (hasItemCount) {
+        const entry = items.find(obj => obj[item] !== undefined);
+        entry[item] += count;
     } else {
-        inventory[item] = count;
+        items.push(newItem);
     }
 
-    UpdatePlayer(player);
+    UpdatePlayer(playerData);
 
-    Notify("success", "Inventaire", `Tu as reçu ${count} ${items[item]["label"]}.`, 5);
-}
+};
 
-export function UseConsummable(item) {
-    let hasItemAndCount = GetInventoryItem(item, 1)
-    
-    if (hasItemAndCount) {
-        const raw = GetPlayer();
-        if (!raw) return;
-        const player = JSON.parse(raw);
+export function RemoveItemCount(item, count) {
+    const hasItemCount = GetPlayerHasItemCount(item, count);
+    const raw = GetPlayer();
+    if (!raw) return;
 
-        switch (
-            items[item]["type"]) {
-            case 'eat':
-                player.metadata["hunger"] = player.metadata["hunger"] + items[item]["upStats"];
-                break;
-            case 'drink':
-                player.metadata["thirst"] = player.metadata["thirst"] + items[item]["upStats"];
-                break;
-            case 'heal':
-                player.metadata["pv"] = player.metadata["pv"] + items[item]["upStats"];
-                break;
-            case 'mana':
-                player.metadata["mana"] = player.metadata["mana"] + items[item]["upStats"];
-                break;
-            case 'exp':
-                player.metadata["rp"] = player.metadata["rp"] + items[item]["upStats"];
-                break;
-            case 'stamina':
-                player.metadata["stamina"] = player.metadata["stamina"] + items[item]["upStats"];
-                break;
+    const playerData = JSON.parse(raw);
+    const items = playerData.inventory.items;
+
+    if (hasItemCount) {
+        const entry = items.find(obj => obj[item] !== undefined);
+        entry[item] -= count;
+
+        if (entry[item] === 0) {
+            const index = items.indexOf(entry);
+            items.splice(index, 1);
         }
-        RemoveInventoryItem(item, 1);
-        UpdatePlayer(player);
+
+        UpdatePlayer(playerData);
+        return true;
+
+    } else {
+        return false;
     }
 }
+
 

@@ -1,8 +1,6 @@
 import { Notify } from "../utils/notify.js";
 import { GetPlayer, UpdatePlayer } from "../models/players.js";
-import { SetFirstCombatPage } from "./first-combat-page.js";
-import { animals } from "../models/npc.js";
-import { SetKeyInventory } from "../models/inventory.js";
+import { animals } from "../datas/npc.js";
 
 export function StartGame(playerData) {
     const app = document.getElementById("app-main-content");
@@ -51,8 +49,6 @@ export function StartGame(playerData) {
             <button class="start-game-btn-castle" id="go-to-the-castle">Continuer sa route<br><i>(stamina -10)</i></button>
         </div>    
         `;
-
-    SetKeyInventory();
     
     const buisBtn = document.getElementById("watch-in-the-buis");
     const castleBtn = document.getElementById("go-to-the-castle");
@@ -62,19 +58,7 @@ export function StartGame(playerData) {
         playerData["metadata"]["stamina"] = playerData["metadata"]["stamina"] - 5;
         playerData["avancement"] = "1.1";
         UpdatePlayer(playerData);
-        const npc = "roar";
-        setTimeout(() => {
-            setTimeout(() => {
-            Notify('info', `Le combat contre ${animals[npc]["label"]} commence dans:`, "3", 1)
-            }, 1000);
-            setTimeout(() => {
-                Notify('info', `Le combat contre ${animals[npc]["label"]} commence dans:`, "2", 1)
-            }, 2000);
-            setTimeout(() => {
-                Notify('info', `Le combat contre ${animals[npc]["label"]} commence dans:`, "1", 1)
-            }, 3000);
-            SetFirstCombatPage(npc);
-        }, 3000);
+        // START THE FIRST COMBAT WITH DE ROAR HERE
         
     })
 
@@ -83,5 +67,6 @@ export function StartGame(playerData) {
         playerData["avancement"] = "1.2";
         UpdatePlayer(playerData);
         Notify("info", `Action`, "Tu continue ton chemin..", 3);
+        // CONTINUE THE ROAD
     })
 }

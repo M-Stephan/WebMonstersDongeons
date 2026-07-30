@@ -7,8 +7,8 @@ export function MainTests() {
     const tests = {
         notify: false,
         player: false,
-        inventory: false,
-        combat: true
+        inventory: true,
+        combat: false
     };
 
     if (tests.notify) {

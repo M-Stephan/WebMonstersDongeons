@@ -1,4 +1,4 @@
-import { StartGame } from "../game/start-game.js";
+import { StartGame } from "../app/start-game.js";
 import { GetPlayer, CreatePlayer, DeletePlayer } from "../models/players.js";
 import { Debug } from "../utils/debug.js";
 

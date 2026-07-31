@@ -4,35 +4,47 @@ import { GetIfMainMenuOpened, GetPlayerInventory, RemoveItemCount } from "../mod
 import { Debug } from "../utils/debug.js";
 import { UseItem } from "../models/item.js";
 
+// Initialize variable contain if the player using an item
 let itemUsing = false;
 
+// Create or refresh player inventory space
 export function RefreshPlayerInventory() {
+    // Get app space
     const appMainContent = document.getElementById("app-main-content");
+    // Get Inventory space
     let inventory = document.getElementById("inventory-box");
-
+    // If inventory does not exists
     if (!inventory) {
-        inventory = document.createElement("div");        
+        // Create a div element
+        inventory = document.createElement("div");     
+        // Add "inventory-box" id to div element   
         inventory.id = "inventory-box";
+        // Hide the inventory element 
         inventory.style.display = "none";
+        // Add inventory into the app space
         appMainContent.appendChild(inventory);
+        // Prepare the inventory content
         inventory.innerHTML = `
             <h1 id="inv-title">Inventaire</h1><br>
             <div id="inventory">
             </div>
         `;
+        // Debug console will be disabled in production mode
         Debug("success", "The inventory was successfully created");
+    // If inventory space exist
     } else {
+        // Refresh the inventory space
         inventory.innerHTML = `
             <h1 id="inv-title">Inventaire</h1><br>
             <div id="inventory">
             </div>
         `;
-    }
-    
-    appMainContent.appendChild(inventory);
+    };
+    // Debug console will be disabled in production mode
     Debug("success", "The inventory was successfully created");
 };
 
+// function to Update the player inventory
 function UpdatePlayerInventory() {
     RefreshPlayerInventory();
     const inventory = GetPlayerInventory();

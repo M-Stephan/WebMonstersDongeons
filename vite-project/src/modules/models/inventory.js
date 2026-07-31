@@ -103,4 +103,3 @@ export function SetMainMenuOpened(boolean) {
     localStorage.setItem("main-menu-opened", JSON.stringify(boolean));
 };
 
-

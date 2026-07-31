@@ -1,6 +1,7 @@
 import { OpenInventory, RefreshPlayerInventory, CloseInventory } from "./inventory-page.js";
 import { Debug } from "../utils/debug.js";
 
+// Function to create the app space into the windows
 export function SetAppPage() {
     // Get app main element
     const app = document.getElementById("app");

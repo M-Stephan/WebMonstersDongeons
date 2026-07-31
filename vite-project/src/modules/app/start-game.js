@@ -2,13 +2,13 @@ import { Notify } from "../utils/notify.js";
 import { GetPlayer, UpdatePlayer } from "../models/players.js";
 import { animals } from "../datas/npc.js";
 import { RefreshPlayerInventory } from "./inventory-page.js";
+import { mainMenuOpened } from "./inventory-page.js";
 
 export function StartGame(playerData) {
+    mainMenuOpened = false;
     const app = document.getElementById("app-main-content");
     let ennemy;
     let race;
-
-    RefreshPlayerInventory();
 
     switch (playerData["race"]) {
         case "human":
@@ -51,8 +51,10 @@ export function StartGame(playerData) {
             <button class="start-game-btn-buis" id="watch-in-the-buis">Regarder dans le buisson<br><i>(stamina -5)</i></button>
             <button class="start-game-btn-castle" id="go-to-the-castle">Continuer sa route<br><i>(stamina -10)</i></button>
         </div>    
-        `;
+    `;
     
+    RefreshPlayerInventory();
+
     const buisBtn = document.getElementById("watch-in-the-buis");
     const castleBtn = document.getElementById("go-to-the-castle");
 

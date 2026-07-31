@@ -4,7 +4,8 @@ import { GetPlayerInventory, RemoveItemCount } from "../models/inventory.js";
 import { Debug } from "../utils/debug.js";
 import { UseItem } from "../models/item.js";
 
-export let itemUsing = false
+export let mainMenuOpened = false;
+export let itemUsing = false;
 
 export function RefreshPlayerInventory() {
     const appMainContent = document.getElementById("app-main-content");
@@ -74,6 +75,8 @@ function UpdatePlayerInventory() {
 export function OpenInventory() {
     if (combatStatus) {
         Notify("error", "Vous êtes en combat", "L'inventaire ne peut pas être ouvert", 5);
+    } else if (mainMenuOpened) {
+        return;
     } else {
         UpdatePlayerInventory()
         const div = document.getElementById("inventory-box");

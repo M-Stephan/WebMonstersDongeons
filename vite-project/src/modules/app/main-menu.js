@@ -1,8 +1,10 @@
 import { DeletePlayer } from "../models/players.js";
 import { CreatePlayerForm } from "./create-player.js";
 import { ContinueGame } from "../utils/continue-game.js";
+import { mainMenuOpened } from "./inventory-page.js";
 
 export function MainMenu() {
+    mainMenuOpened = true;
     const bodyStyle = document.body.style
     bodyStyle.backgroundImage = 'url("/parchemin.png")';
     bodyStyle.backgroundRepeat = "no-repeat";
@@ -29,7 +31,6 @@ export function MainMenu() {
     const parametersBtn = document.getElementById("parameters");
 
     createBtn.addEventListener("click", function() {
-        
         let response = confirm("Ceci ecrasera la partie existante, continuer?");
         if (!response) return;
         CreatePlayerForm();
@@ -37,6 +38,7 @@ export function MainMenu() {
 
     continueBtn.addEventListener("click", function() {
         ContinueGame();
+        mainMenuOpened = false;
     });    
     
     deleteBtn.addEventListener("click", function() {

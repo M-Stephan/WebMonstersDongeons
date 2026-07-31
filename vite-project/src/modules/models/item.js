@@ -1,12 +1,12 @@
 import { RemoveItemCount } from "./inventory.js";
 import { Notify } from "../utils/notify.js";
 import { items } from "../datas/items.js";
-import { itemUsing, RefreshPlayerInventory, OpenInventory, CloseInventory } from "../app/inventory-page.js";
+import { RefreshPlayerInventory, OpenInventory, CloseInventory } from "../app/inventory-page.js";
 import { GetPlayer, UpdatePlayer } from "./players.js";
 
 export function UseItem(item) {
     let canUse = true;
-
+    let itemUsing = false;
     if (itemUsing) {
         Notify("error", "Utilisation en cours", "Tu utilises déjà un item, il faut patienter", 5);
         return

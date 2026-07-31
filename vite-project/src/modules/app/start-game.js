@@ -2,10 +2,10 @@ import { Notify } from "../utils/notify.js";
 import { GetPlayer, UpdatePlayer } from "../models/players.js";
 import { animals } from "../datas/npc.js";
 import { RefreshPlayerInventory } from "./inventory-page.js";
-import { mainMenuOpened } from "./inventory-page.js";
+import { SetMainMenuOpened } from "../models/inventory.js";
 
 export function StartGame(playerData) {
-    mainMenuOpened = false;
+    SetMainMenuOpened(false);
     const app = document.getElementById("app-main-content");
     let ennemy;
     let race;

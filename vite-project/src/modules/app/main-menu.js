@@ -1,10 +1,10 @@
 import { DeletePlayer } from "../models/players.js";
 import { CreatePlayerForm } from "./create-player.js";
 import { ContinueGame } from "../utils/continue-game.js";
-import { mainMenuOpened } from "./inventory-page.js";
+import { GetIfMainMenuOpened, SetMainMenuOpened } from "../models/inventory.js";
 
 export function MainMenu() {
-    mainMenuOpened = true;
+    SetMainMenuOpened(true);
     const bodyStyle = document.body.style
     bodyStyle.backgroundImage = 'url("/parchemin.png")';
     bodyStyle.backgroundRepeat = "no-repeat";
@@ -38,7 +38,6 @@ export function MainMenu() {
 
     continueBtn.addEventListener("click", function() {
         ContinueGame();
-        mainMenuOpened = false;
     });    
     
     deleteBtn.addEventListener("click", function() {

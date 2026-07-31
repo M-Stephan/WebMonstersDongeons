@@ -1,4 +1,4 @@
-import { itemUsing, CloseInventory, OpenInventory, RefreshPlayerInventory } from "../app/inventory-page.js";
+import { CloseInventory, OpenInventory, RefreshPlayerInventory } from "../app/inventory-page.js";
 import { Debug } from "../utils/debug.js";
 import { Notify } from "../utils/notify.js";
 import { GetPlayer, UpdatePlayer } from "./players.js";
@@ -11,7 +11,8 @@ export function CreateInventoryTable() {
             { "water": 10 },
             { "bread": 10 }
         ]
-    }
+    };
+
     Debug("info", "CreateInventoryTable() has successfully created inventory table");
     return inventory;
 };
@@ -35,7 +36,7 @@ export function GetPlayerHasItemCount(item, count) {
     const items = inventory.items;
 
     return items.some(obj => obj[item] >= count);
-}
+};
 
 export function AddItemCount(item, count) {
     const hasItemCount = GetPlayerHasItemCount(item, count);
@@ -73,7 +74,7 @@ export function RemoveItemCount(item, count) {
         if (entry[item] === 0) {
             const index = items.indexOf(entry);
             items.splice(index, 1);
-        }
+        };
 
         UpdatePlayer(playerData);
         
@@ -87,6 +88,19 @@ export function RemoveItemCount(item, count) {
     } else {
         return false;
     }
-}
+};
+
+export function GetIfMainMenuOpened() {
+    const opened = localStorage.getItem("main-menu-opened");
+    return JSON.parse(opened);
+};
+
+export function SetMainMenuOpened(boolean) {
+    const opened = localStorage.getItem("main-menu-opened");
+    if (opened) {
+        localStorage.removeItem("main-menu-opened");
+    };
+    localStorage.setItem("main-menu-opened", JSON.stringify(boolean));
+};
 
 

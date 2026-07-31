@@ -1,11 +1,10 @@
 import { combatStatus } from "../utils/combat.js";
 import { Notify } from "../utils/notify.js";
-import { GetPlayerInventory, RemoveItemCount } from "../models/inventory.js";
+import { GetIfMainMenuOpened, GetPlayerInventory, RemoveItemCount } from "../models/inventory.js";
 import { Debug } from "../utils/debug.js";
 import { UseItem } from "../models/item.js";
 
-export let mainMenuOpened = false;
-export let itemUsing = false;
+let itemUsing = false;
 
 export function RefreshPlayerInventory() {
     const appMainContent = document.getElementById("app-main-content");
@@ -73,6 +72,7 @@ function UpdatePlayerInventory() {
 }
 
 export function OpenInventory() {
+    const mainMenuOpened = GetIfMainMenuOpened(); // change with hthe localStorage
     if (combatStatus) {
         Notify("error", "Vous êtes en combat", "L'inventaire ne peut pas être ouvert", 5);
     } else if (mainMenuOpened) {

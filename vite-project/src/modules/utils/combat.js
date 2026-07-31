@@ -31,14 +31,14 @@ function GetIfPlayerStart() {
     return result;
 };
 
-function PlayerHit(power, npc) {
+export function PlayerHit(power, npc) {
     const powerHit = powers[power][force];
     const totalHit = powerHit * animals["animals"][npc]["hit"]
     npcPv -= totalHit;
     Notify("success", `Vous avez infligé ${totalHit} de dégat à votre adversaire`, `Il lui reste ${npcPV} PV`, 5);  
 };
 
-function NpcHit(power, npc) {
+export function NpcHit(power, npc) {
     const raw = GetPlayer();
     if (!raw) return;
     const playerData = JSON.parse(raw);

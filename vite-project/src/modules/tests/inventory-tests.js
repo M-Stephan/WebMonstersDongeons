@@ -11,10 +11,11 @@ export function GetInventoryTest() {
     Debug("success", hasNotItem);
 
     AddItemCount("water", 5);
+
+    AddItemCount("wood", 5);
     
     AddItemCount("bulb", 1);
 
     RemoveItemCount("water", 5);
 
-    RemoveItemCount("bulb", 1);
 };

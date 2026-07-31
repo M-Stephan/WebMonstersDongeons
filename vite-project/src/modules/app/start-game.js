@@ -1,11 +1,14 @@
 import { Notify } from "../utils/notify.js";
 import { GetPlayer, UpdatePlayer } from "../models/players.js";
 import { animals } from "../datas/npc.js";
+import { RefreshPlayerInventory } from "./inventory-page.js";
 
 export function StartGame(playerData) {
     const app = document.getElementById("app-main-content");
     let ennemy;
     let race;
+
+    RefreshPlayerInventory();
 
     switch (playerData["race"]) {
         case "human":

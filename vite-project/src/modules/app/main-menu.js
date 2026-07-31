@@ -10,7 +10,9 @@ export function MainMenu() {
     bodyStyle.backgroundColor = "#222222c9";
     
     const app = document.getElementById("app-main-content");
-    app.innerHTML = `
+    const div = document.createElement("div");
+    div.id = "main-menu-page";
+    div.innerHTML = `
         <h1>Monsters & Dongeons</h1>
         <h2>Menu Principal</h2>
         <div id="main-menu">
@@ -20,7 +22,7 @@ export function MainMenu() {
             <button class="main-menu-btn" id="parameters">Paramètres</button>
         </div>
     `;
-
+    app.appendChild(div);
     const createBtn = document.getElementById("create-player");
     const continueBtn = document.getElementById("continue-game");
     const deleteBtn = document.getElementById("delete-player");

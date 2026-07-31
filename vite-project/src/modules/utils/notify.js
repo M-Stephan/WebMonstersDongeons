@@ -51,7 +51,7 @@ function ShowNotify(type, title, description) {
 
     notify.innerHTML = `
         <h4 style="color:${color};">${title}</h4>
-        <p>${description}</p>
+        <p style="color:${color};">${description}</p>
     `;
     notifyBox.appendChild(notify);
 };

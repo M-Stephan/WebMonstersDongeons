@@ -7,7 +7,7 @@ export function MainTests() {
     const tests = {
         notify: false,
         player: false,
-        inventory: true,
+        inventory: false,
         combat: false
     };
 

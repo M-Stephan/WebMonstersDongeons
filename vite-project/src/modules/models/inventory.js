@@ -1,4 +1,6 @@
+import { itemUsing, CloseInventory, OpenInventory, RefreshPlayerInventory } from "../app/inventory-page.js";
 import { Debug } from "../utils/debug.js";
+import { Notify } from "../utils/notify.js";
 import { GetPlayer, UpdatePlayer } from "./players.js";
 
 export function CreateInventoryTable() {
@@ -53,7 +55,7 @@ export function AddItemCount(item, count) {
     }
 
     UpdatePlayer(playerData);
-
+    RefreshPlayerInventory();
 };
 
 export function RemoveItemCount(item, count) {
@@ -74,6 +76,12 @@ export function RemoveItemCount(item, count) {
         }
 
         UpdatePlayer(playerData);
+        
+        RefreshPlayerInventory();
+        OpenInventory();
+        setTimeout(() => {
+            CloseInventory();
+        }, 2800);
         return true;
 
     } else {

@@ -6,12 +6,13 @@ import { GetPlayer, UpdatePlayer } from "./players.js";
 
 export function UseItem(item) {
     let canUse = true;
-    let itemUsing = false;
+    let itemUsing = GetIfPlayerUsingItem();
+
     if (itemUsing) {
         Notify("error", "Utilisation en cours", "Tu utilises déjà un item, il faut patienter", 5);
         return
-    }
-    
+    };
+
     const currentItem = items[item];
 
     const raw = GetPlayer();
@@ -22,7 +23,7 @@ export function UseItem(item) {
 
     function LocalNotify() {
         Notify("success", "Inventaire", `Tu as utilisé: 1x ${items[item]["label"]}`, 3)
-    }
+    };
 
     function Consume(type, max) {
         var upStats = currentItem["upStats"];
@@ -81,3 +82,24 @@ export function UseItem(item) {
         UpdatePlayer(playerData);
     }
 };
+
+export function UpdatePlayerUsingItem(boolean) {
+    const usingItem = localStorage.getItem("using_item");
+
+    if (usingItem) {
+        localStorage.removeItem("using_item");
+    };
+
+    localStorage.setItem("using_item", JSON.stringify(boolean));
+}
+
+export function GetIfPlayerUsingItem() {
+    let result;
+    const usingItem = localStorage.getItem("using_item");
+
+    if (usingItem) {
+        result = JSON.parse(usingItem);
+    };
+
+    return result;
+}

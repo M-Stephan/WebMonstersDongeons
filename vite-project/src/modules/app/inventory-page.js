@@ -2,7 +2,7 @@ import { combatStatus } from "../utils/combat.js";
 import { Notify } from "../utils/notify.js";
 import { GetIfMainMenuOpened, GetPlayerInventory, RemoveItemCount } from "../models/inventory.js";
 import { Debug } from "../utils/debug.js";
-import { UseItem } from "../models/item.js";
+import { UpdatePlayerUsingItem, UseItem } from "../models/item.js";
 
 // Initialize variable contain if the player using an item
 let itemUsing = false;
@@ -70,14 +70,13 @@ function UpdatePlayerInventory() {
             <p>${count}</p>
         `;
 
-
         const currentCard = document.getElementById(`item-${item}`);
 
         currentCard.addEventListener("click", function() {
             UseItem(item);
-            itemUsing = true;
+            UpdatePlayerUsingItem(true);
             setTimeout(() => {
-                itemUsing = false
+                UpdatePlayerUsingItem(false);
             }, 3000);
         });
     });

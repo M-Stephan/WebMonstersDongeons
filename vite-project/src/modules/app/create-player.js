@@ -32,24 +32,24 @@ export function CreatePlayerForm() {
             <div id="race-elem">
                 <div>
                     <p>Choisir la race:</p>
-                    <label for="race-input">Troll</label>
+                    <label for="troll">Troll</label>
                     <input type="radio" name="race" id="troll">
-                    <label for="race-input">Elfe</label>
+                    <label for="elfe">Elfe</label>
                     <input type="radio" name="race" id="elfe">
-                    <label for="race-input">Nain</label>
+                    <label for="nain">Nain</label>
                     <input type="radio" name="race" id="nain">
-                    <label for="race-input">Humain</label>
+                    <label for="human">Humain</label>
                     <input type="radio" name="race" id="human">
                 </div>
                 <div>
                     <p>Choisir l'élément:</p>
-                    <label for="type-input">Eau</label>
+                    <label for="water">Eau</label>
                     <input type="radio" name="type" id="water">
-                    <label for="type-input">Terre</label>
+                    <label for="dirt">Terre</label>
                     <input type="radio" name="type" id="dirt">
-                    <label for="type-input">Feu</label>
+                    <label for="fire">Feu</label>
                     <input type="radio" name="type" id="fire">
-                    <label for="type-input">Air</label>
+                    <label for="air">Air</label>
                     <input type="radio" name="type" id="air">
                 </div>
             </div>

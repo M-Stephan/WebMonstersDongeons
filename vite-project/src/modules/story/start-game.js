@@ -39,7 +39,7 @@ export function StartGame(playerData) {
             Jusqu'au jour où tout a basculé!<br>
 
             Une horde ${ennemy} a attaqué le village, détruit chaque maison, massacré des innocents et tes parents ont péri en tentant de te protéger.<br>
-            Trop jeune pour te battre, tu as du te cacher… et tu as survécu.<br>
+            Trop jeune pour te battre, tu as du te cacher… et tu as survécu.<br><br>
             Depuis ce jour, tu as grandi seul, loin des autres, apprenant à vivre dans l’ombre et à te débrouiller par tes propres moyens.<br><br>
 
             Dix années de solitude, de survie, de silence.<br>

@@ -5,11 +5,6 @@ import { GetIfMainMenuOpened, SetMainMenuOpened } from "../models/inventory.js";
 
 export function MainMenu() {
     SetMainMenuOpened(true);
-    const bodyStyle = document.body.style
-    bodyStyle.backgroundImage = 'url("/parchemin.png")';
-    bodyStyle.backgroundRepeat = "no-repeat";
-    bodyStyle.backgroundSize;
-    bodyStyle.backgroundColor = "#222222c9";
     
     const app = document.getElementById("app-main-content");
     const div = document.createElement("div");

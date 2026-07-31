@@ -4,7 +4,7 @@ import { Debug } from "../utils/debug.js";
 export function SetAppPage() {
     // Get app main element
     const app = document.getElementById("app");
-    // Create new element to receive the game
+    // Create new element to receive the game content
     const appMainContent = document.createElement("div");
     // add an id
     appMainContent.id = "app-main-content";
@@ -25,7 +25,5 @@ export function SetAppPage() {
             // Hide the playerInventory
             CloseInventory();
         };
-    });
-
-    
+    }); 
 };

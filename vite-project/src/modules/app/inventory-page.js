@@ -8,16 +8,25 @@ export let itemUsing = false
 
 export function RefreshPlayerInventory() {
     const appMainContent = document.getElementById("app-main-content");
-    let inventory = document.getElementById("inventory");
+    let inventory = document.getElementById("inventory-box");
 
     if (!inventory) {
         inventory = document.createElement("div");        
-        inventory.id = "inventory";
+        inventory.id = "inventory-box";
         inventory.style.display = "none";
         appMainContent.appendChild(inventory);
+        inventory.innerHTML = `
+            <h1 id="inv-title">Inventaire</h1><br>
+            <div id="inventory">
+            </div>
+        `;
         Debug("success", "The inventory was successfully created");
     } else {
-        inventory.innerHTML = ``;
+        inventory.innerHTML = `
+            <h1 id="inv-title">Inventaire</h1><br>
+            <div id="inventory">
+            </div>
+        `;
     }
     
     appMainContent.appendChild(inventory);
@@ -37,6 +46,7 @@ function UpdatePlayerInventory() {
         const card = document.createElement("button");
         card.id = `item-${item}`;
         card.classList.add("inventory-item");
+
         if (!div) {
             div = document.getElementById("inventory");
         }
@@ -66,12 +76,12 @@ export function OpenInventory() {
         Notify("error", "Vous êtes en combat", "L'inventaire ne peut pas être ouvert", 5);
     } else {
         UpdatePlayerInventory()
-        const div = document.getElementById("inventory");
+        const div = document.getElementById("inventory-box");
         div.style.display = "grid";
     }
 }
 
 export function CloseInventory() {
-        const div = document.getElementById("inventory");
+        const div = document.getElementById("inventory-box");
         div.style.display = "none";
 }

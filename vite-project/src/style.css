@@ -266,3 +266,43 @@ input::content {
 #npc-combat-sentence {
   grid-column: 2 / 3;
 }
+
+#inventory-box {
+  position: absolute;
+  top: 50px;
+  width: 500px;
+  height: 800px;
+  max-height: 800px;
+
+  display: grid;
+  grid-template-rows: 120px 1fr;
+  place-items: top;
+  align-items: top;
+
+  background-color: rgb(100, 66, 38);
+  color: #d6ac75;
+  border: 2px solid rgb(248, 217, 191);
+  border-radius: 25px;
+}
+
+#inventory {
+  grid-row: 2 / 3;
+  position: relative;
+  overflow: auto;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  max-height: 660px;
+  overflow: auto;
+}
+
+#inv-title {
+  grid-row: 1 / 2;
+}
+
+.inventory-item {
+  border-radius: 6px;
+  background-color: rgb(143, 108, 79);
+  margin: 25px;
+  width: 60px;
+  height: 100px;
+}

@@ -27,7 +27,7 @@ export function UseItem(item) {
     function Consume(type, max) {
         var upStats = playerData["metadata"]["upStats"];
         if (playerData["metadata"][type] >= 200) {
-            Notify("info", "Tout va bien pour l'instant.", "Tu ne peux pas faire ça.", 3);
+            Notify("info", "Tout va bien pour l'instant.", "Tu ne peux pas faire ça.", 3.2);
         } else if ((playerData["metadata"][type] += upStats) >= 200) {
             playerData["metadata"][type] = 200;
             RemoveItemCount(item, 1);
@@ -37,6 +37,11 @@ export function UseItem(item) {
             RemoveItemCount(item, 1);
             LocalNotify();
         };
+        RefreshPlayerInventory();
+        OpenInventory();
+        setTimeout(() => {
+            CloseInventory();
+        }, 3000);
     }
 
     if (currentItem["consume"]) {

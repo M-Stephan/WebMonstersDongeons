@@ -25,23 +25,36 @@ export function UseItem(item) {
     }
 
     function Consume(type, max) {
-        var upStats = playerData["metadata"]["upStats"];
-        if (playerData["metadata"][type] >= 200) {
-            Notify("info", "Tout va bien pour l'instant.", "Tu ne peux pas faire ça.", 3.2);
-        } else if ((playerData["metadata"][type] += upStats) >= 200) {
-            playerData["metadata"][type] = 200;
-            RemoveItemCount(item, 1);
-            LocalNotify();
+        var upStats = currentItem["upStats"];
+        if (type === "rp") {
+            if ((playerData["metadata"][type] + upStats) >= max) {
+                const restPoints = (playerData["metadata"][type] + upStats) - max
+                RemoveItemCount(item, 1);
+                LocalNotify();
+                // LevelUp(restPoints);
+            } else {
+                playerData["metadata"][type] += upStats;
+                RemoveItemCount(item, 1);
+                LocalNotify();
+            };
         } else {
-            playerData["metadata"][type] += upStats;
-            RemoveItemCount(item, 1);
-            LocalNotify();
-        };
-        RefreshPlayerInventory();
-        OpenInventory();
-        setTimeout(() => {
-            CloseInventory();
-        }, 3000);
+            if (playerData["metadata"][type] >= max) {
+                Notify("info", "Tout va bien pour l'instant.", "Tu ne peux pas faire ça.", 3.2);
+            } else if ((playerData["metadata"][type] + upStats) >= max) {
+                playerData["metadata"][type] = max;
+                RemoveItemCount(item, 1);
+                LocalNotify();
+            } else {
+                playerData["metadata"][type] += upStats;
+                RemoveItemCount(item, 1);
+                LocalNotify();
+            };
+            RefreshPlayerInventory();
+            OpenInventory();
+            setTimeout(() => {
+                CloseInventory();
+            }, 3000);    
+        }
     }
 
     if (currentItem["consume"]) {
@@ -53,19 +66,13 @@ export function UseItem(item) {
                 Consume("hunger", 200);
                 break;
             case "heal":
-                Consume("heal", 500);
+                Consume("pv", 500);
                 break;
             case "mana":
                 Consume("mana", 200);
                 break;
             case "exp":
-                var upStats = currentItem["upStats"];
-                if ((playerData["metadata"]["rp"] += upStats) >= 500) {
-                    const restPoints = (playerData["metadata"]["rp"] += upStats) - 500
-                    // LevelUp(restPoints);
-                } else {
-                    playerData["metadata"]["rp"] += upStats;
-                };
+                Consume("rp", 500);
                 break;
             case "stamina":
                 Consume("stamina", 100);

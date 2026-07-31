@@ -5,7 +5,6 @@ import { animals } from "../datas/npc.js";
 
 export function ContinueGame() {
     const raw = GetPlayer();
-    const npc = "roar"
 
     if (!raw) return;
 
@@ -17,6 +16,5 @@ export function ContinueGame() {
         case "1.0":
             StartGame(playerData);
             break;
-        case "1.1":
     }
 };

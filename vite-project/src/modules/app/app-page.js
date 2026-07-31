@@ -2,21 +2,27 @@ import { OpenInventory, RefreshPlayerInventory, CloseInventory } from "./invento
 import { Debug } from "../utils/debug.js";
 
 export function SetAppPage() {
+    // Get app main element
     const app = document.getElementById("app");
+    // Create new element to receive the game
     const appMainContent = document.createElement("div");
+    // add an id
     appMainContent.id = "app-main-content";
+    // add the new element into the main element
     app.appendChild(appMainContent);
-
+    // Create the player inventory
     RefreshPlayerInventory();
-
+    // create an event when the key "I" was pushed
     window.addEventListener("keydown", function(event) {
         if (event.key === "i" || event.key === "I") {
+            // Display the player inventory
             OpenInventory();
         };
     });
-
-        window.addEventListener("keydown", function(event) {
+    //Create an event when the key "ESC" was pushed
+    window.addEventListener("keydown", function(event) {
         if (event.key === "Escape") {
+            // Hide the playerInventory
             CloseInventory();
         };
     });

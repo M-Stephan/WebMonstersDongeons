@@ -59,7 +59,7 @@ export function UseItem(item) {
                 Consume("mana", 200);
                 break;
             case "exp":
-                var upStats = playerData["metadata"]["upStats"];
+                var upStats = currentItem["upStats"];
                 if ((playerData["metadata"]["rp"] += upStats) >= 500) {
                     const restPoints = (playerData["metadata"]["rp"] += upStats) - 500
                     // LevelUp(restPoints);

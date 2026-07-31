@@ -2,6 +2,7 @@ import { Notify } from "../utils/notify.js";
 import { GetIfMainMenuOpened, GetPlayerInventory, RemoveItemCount } from "../models/inventory.js";
 import { Debug } from "../utils/debug.js";
 import { UpdatePlayerUsingItem, UseItem } from "../models/item.js";
+import { GetPlayerIsFighting } from "../utils/combat.js";
 
 // Initialize variable contain if the player using an item
 let itemUsing = false;
@@ -98,7 +99,7 @@ export function OpenInventory() {
     // Get if the user is in the main menu
     const mainMenuOpened = GetIfMainMenuOpened();
     // Get if the player is in the fight
-    const combatStatus = false; // Will be replaced by the localStorage get
+    const combatStatus = GetPlayerIsFighting(); // Will be replaced by the localStorage get
 
     // if the player is in the fight
     if (combatStatus) {

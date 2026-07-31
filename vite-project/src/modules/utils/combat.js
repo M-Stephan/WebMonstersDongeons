@@ -8,6 +8,26 @@ export let combatStatus = false;
 
 let npcPv;
 
+export function UpdatePlayerFighting(boolean) {
+    const playerIsFighting = localStorage.getItem("player_is_fighting");
+
+    if (playerIsFighting) {
+        localStorage.removeItem("player_is_fighting");
+    }
+
+    localStorage.setItem("player_is_fighting", JSON.stringify(boolean));
+};
+
+export function GetPlayerIsFighting() {
+    let result;
+    const playerIsFighting = localStorage.getItem("player_is_fighting");
+    if (playerIsFighting) {
+        result = JSON.parse(playerIsFighting);
+    };
+
+    return result;
+};
+
 export function StartCombat(npc) {
     npcPv = animals["animals"][npc]["pv"];
     const playerStart = GetIfPlayerStart();
@@ -46,5 +66,4 @@ export function NpcHit(power, npc) {
     playerData["metadata"]["pv"] -= npcHit;
     Notify("error", `Votre adversaire vous a infligé ${npcHit} de dégat.`, `Il te reste ${playerData["metadata"]["pv"]} PV`, 5);
     UpdatePlayer(playerData);
-    PlayerHit(power, npc);
 };

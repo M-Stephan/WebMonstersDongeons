@@ -1,4 +1,3 @@
-import { combatStatus } from "../utils/combat.js";
 import { Notify } from "../utils/notify.js";
 import { GetIfMainMenuOpened, GetPlayerInventory, RemoveItemCount } from "../models/inventory.js";
 import { Debug } from "../utils/debug.js";
@@ -46,56 +45,84 @@ export function RefreshPlayerInventory() {
 
 // function to Update the player inventory
 function UpdatePlayerInventory() {
+    // Refresh the player inventory
     RefreshPlayerInventory();
+    // Get the player inventory
     const inventory = GetPlayerInventory();
+    // get the player inventory items
     const items = inventory["items"];
 
+    // for each item object
     items.forEach(obj => {
+        // get the key such as item
         const item = Object.keys(obj)[0];
+        // get the value such as a count
         const count = obj[item];
+        // Get the inventory space
         let div = document.getElementById("inventory");
-
+        // Create an element for each item
         const card = document.createElement("button");
+        // Add a unique ID to element
         card.id = `item-${item}`;
+        // Add a class to element
         card.classList.add("inventory-item");
-
-        if (!div) {
-            div = document.getElementById("inventory");
-        }
-
+        // Add Item element into the inventory space
         div.appendChild(card);
-
+        // Write each element with item and count
+        // Will be refactored to write description for each item too
         card.innerHTML = `
             <h4>${item}</h4>
             <p>${count}</p>
         `;
 
+        // get each element
         const currentCard = document.getElementById(`item-${item}`);
 
+        // Creat an event for each element
         currentCard.addEventListener("click", function() {
+            // Call function to use the item
             UseItem(item);
+            // Call function to tell the player is using item
             UpdatePlayerUsingItem(true);
+            // Tell the player has finished to use item 3 seconds later
             setTimeout(() => {
+                // Call function to tell the player has finished to use item
                 UpdatePlayerUsingItem(false);
             }, 3000);
         });
     });
-}
+};
 
+// Function to Display the player inventory 
 export function OpenInventory() {
-    const mainMenuOpened = GetIfMainMenuOpened(); // change with hthe localStorage
-    if (combatStatus) {
-        Notify("error", "Vous êtes en combat", "L'inventaire ne peut pas être ouvert", 5);
-    } else if (mainMenuOpened) {
-        return;
-    } else {
-        UpdatePlayerInventory()
-        const div = document.getElementById("inventory-box");
-        div.style.display = "grid";
-    }
-}
+    // Get if the user is in the main menu
+    const mainMenuOpened = GetIfMainMenuOpened();
+    // Get if the player is in the fight
+    const combatStatus = false; // Will be replaced by the localStorage get
 
-export function CloseInventory() {
+    // if the player is in the fight
+    if (combatStatus) {
+        // Notify You cannot make that, the inventory can't be opened
+        Notify("error", "Vous êtes en combat", "L'inventaire ne peut pas être ouvert", 5);
+    // else if the player id in the main menu
+    } else if (mainMenuOpened) {
+        // stop all, the inventory can't be opened
+        return;
+    // else in the other time
+    } else {
+        // Refresh the inventory
+        UpdatePlayerInventory();
+        // Get the inventory space
         const div = document.getElementById("inventory-box");
+        // display the inventory
+        div.style.display = "grid";
+    };
+};
+
+// function to hide the player inventory
+export function CloseInventory() {
+        // Get the inventory space
+        const div = document.getElementById("inventory-box");
+        // Hide the inventory
         div.style.display = "none";
-}
+};

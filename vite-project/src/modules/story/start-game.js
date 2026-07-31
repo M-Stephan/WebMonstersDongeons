@@ -1,8 +1,9 @@
 import { Notify } from "../utils/notify.js";
 import { GetPlayer, UpdatePlayer } from "../models/players.js";
 import { animals } from "../datas/npc.js";
-import { RefreshPlayerInventory } from "./inventory-page.js";
+import { RefreshPlayerInventory } from "../app/inventory-page.js";
 import { SetMainMenuOpened } from "../models/inventory.js";
+import { LookIntoTheBuis } from "./1.1.js";
 
 export function StartGame(playerData) {
     SetMainMenuOpened(false);
@@ -63,7 +64,7 @@ export function StartGame(playerData) {
         playerData["metadata"]["stamina"] = playerData["metadata"]["stamina"] - 5;
         playerData["avancement"] = "1.1";
         UpdatePlayer(playerData);
-        // START THE FIRST COMBAT WITH DE ROAR HERE
+        LookIntoTheBuis();
         
     })
 

@@ -3,6 +3,7 @@ import { StartGame } from "../story/start-game.js";
 import { Notify } from "./notify.js";
 import { animals } from "../datas/npc.js";
 import { LookIntoTheBuis } from "../story/1.1.js";
+import { InventoryTutorial } from "../app/inventory-tutorial.js";
 
 export function ContinueGame() {
     const raw = GetPlayer();
@@ -18,7 +19,10 @@ export function ContinueGame() {
             StartGame(playerData);
             break;
         case "1.1":
+            Notify("info", `Action`, "Tu regardes dans le buisson..", 3);
             LookIntoTheBuis();
             break;
+        case "2.0":
+            InventoryTutorial();
     }
 };

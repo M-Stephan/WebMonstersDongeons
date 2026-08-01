@@ -3,6 +3,7 @@ import { GetIfMainMenuOpened, GetPlayerInventory, RemoveItemCount } from "../mod
 import { Debug } from "../utils/debug.js";
 import { UpdatePlayerUsingItem, UseItem } from "../models/item.js";
 import { GetPlayerIsFighting } from "../utils/combat.js";
+import { items } from "../datas/items.js";
 
 // Initialize variable contain if the player using an item
 let itemUsing = false;
@@ -40,6 +41,7 @@ export function RefreshPlayerInventory() {
             </div>
         `;
     };
+
     // Debug console will be disabled in production mode
     Debug("success", "The inventory was successfully created");
 };
@@ -51,10 +53,10 @@ function UpdatePlayerInventory() {
     // Get the player inventory
     const inventory = GetPlayerInventory();
     // get the player inventory items
-    const items = inventory["items"];
+    const playerItems = inventory["items"];
 
     // for each item object
-    items.forEach(obj => {
+    playerItems.forEach(obj => {
         // get the key such as item
         const item = Object.keys(obj)[0];
         // get the value such as a count
@@ -72,8 +74,10 @@ function UpdatePlayerInventory() {
         // Write each element with item and count
         // Will be refactored to write description for each item too
         card.innerHTML = `
-            <h4>${item}</h4>
+        <div>
+            <h4>${items[item]["label"]}</h4>
             <p>${count}</p>
+        </div>
         `;
 
         // get each element

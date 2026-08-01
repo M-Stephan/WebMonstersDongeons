@@ -30,7 +30,7 @@ export const items = {
     },
 
     "small_exp_potion": {
-        "label": "Petite potion d'expérience'",
+        "label": "Petite potion d'expérience",
         "upStats": 10,
         "type": "exp",
         "consume": true
@@ -41,5 +41,19 @@ export const items = {
         "upStats": 10,
         "type": "stamina",
         "consume": true
-    }
+    },
+
+    /* ###### ANIMALS LOOT ###### */
+    "roar_skin": {
+        "label": "Peau de sanglier",
+        "type": "skin",
+        "consume": false
+    },
+
+    "roar_meat": {
+        "label": "Viande de sanglier",
+        "upStats": 10,
+        "type": "eat",
+        "consume": true
+    },
 }

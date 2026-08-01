@@ -5,7 +5,6 @@ import { RefreshPlayerInventory, OpenInventory, CloseInventory } from "../app/in
 import { GetPlayer, UpdatePlayer } from "./players.js";
 
 export function UseItem(item) {
-    let canUse = true;
     let itemUsing = GetIfPlayerUsingItem();
 
     if (itemUsing) {
